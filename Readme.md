@@ -1,7 +1,7 @@
 # Личный проект «Киноман» [![Build status][travis-image]][travis-url]
 
 * Студент: [Иван Полехин](https://up.htmlacademy.ru/ecmascript/12/user/674919).
-* Наставник: `Неизвестно`.
+* Наставник: [Иван](https://up.htmlacademy.ru/ecmascript/12/user/674919).
 
 ---
 
