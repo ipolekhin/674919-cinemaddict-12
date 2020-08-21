@@ -1,9 +1,27 @@
+import {SORT_NAMES} from "../const.js";
+
+const createSorMarkup = () => {
+  return (
+    SORT_NAMES.map((name) => {
+      return (
+        `<li>
+          <a
+            href="#"
+            class="sort__button"
+            data-sort-type="${name}"
+          >Sort by ${name}</a>
+        </li>`
+      );
+    }).join(`\n`)
+  );
+};
+
 export const createSortTemplate = () => {
+  const sortMarkup = createSorMarkup();
+
   return (
     `<ul class="sort">
-      <li><a href="#" class="sort__button sort__button--active">Sort by default</a></li>
-      <li><a href="#" class="sort__button">Sort by date</a></li>
-      <li><a href="#" class="sort__button">Sort by rating</a></li>
+      ${sortMarkup}
     </ul>`
   );
 };
