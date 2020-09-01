@@ -1,13 +1,30 @@
-export const createFilmsListTemplate = (className, title) => {
-  const sectionClassName = className ? `films-list--extra` : `films-list`;
-  const filmsListTitle = title ? title : `All movies. Upcoming`;
-  const hiddenClassName = title ? `` : `visually-hidden`;
+import {createElement} from "../utils/render.js";
+
+const createFilmsListTemplate = () => {
 
   return (
-    `<section class="${sectionClassName}">
-      <h2 class="films-list__title ${hiddenClassName}">${filmsListTitle}</h2>
-
-      <div class="films-list__container"></div>
-    </section>`
+    `<div class="films-list__container"></div>`
   );
 };
+
+export default class FilmsList {
+  constructor() {
+    this._element = null;
+  }
+
+  getTemplate() {
+    return createFilmsListTemplate();
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}

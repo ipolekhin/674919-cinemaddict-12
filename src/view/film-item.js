@@ -1,4 +1,5 @@
 import {BUTTON_TAG_NAMES, ButtonTagType, ButtonType} from "../const.js";
+import {createElement} from "../utils/render";
 
 const MAX_LENGTH_DESCRIPTION = 140;
 const ELLIPSIS = `...`;
@@ -25,7 +26,7 @@ const createButtonsMarkup = ({isWatchlist, isWatched, isFavorite}) => {
     }).join(`\n`);
 };
 
-export const createFilmItemTemplate = (film) => {
+const createFilmItemTemplate = (film) => {
   const {
     commentsCount,
     description,
@@ -63,3 +64,26 @@ export const createFilmItemTemplate = (film) => {
     </article>`
   );
 };
+
+export default class FilmItem {
+  constructor(film) {
+    this._element = null;
+    this._film = film;
+  }
+
+  getTemplate() {
+    return createFilmItemTemplate(this._film);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}

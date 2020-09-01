@@ -1,5 +1,6 @@
+import {createElement} from "../utils/render.js";
 import {NavigationTagsType} from "../const.js";
-import {setProfileRating} from "../utils/common";
+import {setProfileRating} from "../utils/common.js";
 
 const rank = (statistics) => {
   return statistics.reduce((result, {filterName, count}) => {
@@ -10,7 +11,7 @@ const rank = (statistics) => {
   }, 0);
 };
 
-export const createUserRatingTemplate = (statistics) => {
+const createUserRatingTemplate = (statistics) => {
   const countWatched = rank(statistics);
   const profileRank = setProfileRating(countWatched);
 
@@ -21,3 +22,26 @@ export const createUserRatingTemplate = (statistics) => {
     </section>`
   );
 };
+
+export default class UserRating {
+  constructor(statistic) {
+    this._element = null;
+    this._statistic = statistic;
+  }
+
+  getTemplate() {
+    return createUserRatingTemplate(this._statistic);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}

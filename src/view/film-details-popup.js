@@ -1,6 +1,7 @@
 import {createCommentsTemplate} from "./comments.js";
+import {createElement} from "../utils/render";
 
-export const createFilmDetailsPopupTemplate = (film, comments) => {
+const createFilmDetailsPopupTemplate = (film, comments) => {
   const {
     actors,
     ageRating,
@@ -126,3 +127,27 @@ export const createFilmDetailsPopupTemplate = (film, comments) => {
     </section>`
   );
 };
+
+export default class FilmDetailsPopup {
+  constructor(film, comments) {
+    this._element = null;
+    this._film = film;
+    this._comments = comments;
+  }
+
+  getTemplate() {
+    return createFilmDetailsPopupTemplate(this._film, this._comments);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}

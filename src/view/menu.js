@@ -1,4 +1,5 @@
 import {NavigationTagsType} from "../const.js";
+import {createElement} from "../utils/render.js";
 
 const createNavigationMarkup = ({name, filterName, count, checked}) => {
   const check = !checked ? `main-navigation__item--active` : ``;
@@ -13,7 +14,7 @@ const createNavigationMarkup = ({name, filterName, count, checked}) => {
   );
 };
 
-export const createMenuTemplate = (navigations) => {
+const createMenuTemplate = (navigations) => {
   const [navigationStats] = navigations.slice(-1);
   const navigationMarkup = navigations
     .slice(0, -1)
@@ -29,3 +30,26 @@ export const createMenuTemplate = (navigations) => {
     </nav>`
   );
 };
+
+export default class Menu {
+  constructor(navigations) {
+    this._element = null;
+    this._navigations = navigations;
+  }
+
+  getTemplate() {
+    return createMenuTemplate(this._navigations);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}
