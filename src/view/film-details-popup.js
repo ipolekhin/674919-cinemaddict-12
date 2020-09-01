@@ -1,5 +1,5 @@
 import {createCommentsTemplate} from "./comments.js";
-import {createElement} from "../utils/render";
+import {createElement} from "../utils/render.js";
 
 const createFilmDetailsPopupTemplate = (film, comments) => {
   const {
