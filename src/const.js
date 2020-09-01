@@ -1,5 +1,3 @@
-import {ProfileType} from "../../674919-cinemaddict-11/src/const";
-
 export const AGE_RESTRICTIONS = [
   `18+`
 ];
@@ -73,6 +71,12 @@ export const NavigationType = {
   [NavigationTagsType.HISTORY]: `History`,
   [NavigationTagsType.FAVORITES]: `Favorites`,
   [NavigationTagsType.STATS]: `Stats`,
+};
+
+export const ProfileType = {
+  NOVICE: `Novice`,
+  FAN: `Fan`,
+  MOVIE_BUFF: `Movie buff`,
 };
 
 export const ProfileIntervals = [
