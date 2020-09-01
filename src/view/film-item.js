@@ -1,5 +1,5 @@
 import {BUTTON_TAG_NAMES, ButtonTagType, ButtonType} from "../const.js";
-import {createElement} from "../utils/render";
+import {createElement} from "../utils/render.js";
 
 const MAX_LENGTH_DESCRIPTION = 140;
 const ELLIPSIS = `...`;
