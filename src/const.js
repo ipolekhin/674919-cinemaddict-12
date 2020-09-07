@@ -43,6 +43,16 @@ export const EMOJI_SMILES = [
   EmojiType.ANGRY,
 ];
 
+export const ExtraBlockNames = {
+  TOP_RATED: `Top rated`,
+  MOST_COMMENTED: `Most commented`,
+};
+
+export const EXTRA_BLOCK_NAMES = [
+  ExtraBlockNames.TOP_RATED,
+  ExtraBlockNames.MOST_COMMENTED,
+];
+
 export const GENRE_NAMES = [
   `Musical`,
   `Western`,

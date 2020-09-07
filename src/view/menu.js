@@ -1,5 +1,5 @@
+import AbstractView from "./abstract.js";
 import {NavigationTagsType} from "../const.js";
-import {createElement} from "../utils/render.js";
 
 const createNavigationMarkup = ({name, filterName, count, checked}) => {
   const check = !checked ? `main-navigation__item--active` : ``;
@@ -31,25 +31,13 @@ const createMenuTemplate = (navigations) => {
   );
 };
 
-export default class Menu {
+export default class Menu extends AbstractView {
   constructor(navigations) {
-    this._element = null;
+    super();
     this._navigations = navigations;
   }
 
   getTemplate() {
     return createMenuTemplate(this._navigations);
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }
