@@ -1,5 +1,5 @@
+import AbstractView from "./abstract.js";
 import {BUTTON_TAG_NAMES, ButtonTagType, ButtonType} from "../const.js";
-import {createElement} from "../utils/render.js";
 
 const MAX_LENGTH_DESCRIPTION = 140;
 const ELLIPSIS = `...`;
@@ -65,25 +65,28 @@ const createFilmItemTemplate = (film) => {
   );
 };
 
-export default class FilmItem {
+export default class FilmItem extends AbstractView {
   constructor(film) {
-    this._element = null;
+    super();
     this._film = film;
+    this._openPopupHandler = this._openPopupHandler.bind(this);
+  }
+
+  _openPopupHandler(event) {
+    event.preventDefault();
+    if (event.target.classList.contains(`film-card__poster`)
+      || event.target.classList.contains(`film-card__title`)
+      || event.target.classList.contains(`film-card__comments`)) {
+      this._callback.openPopup();
+    }
+  }
+
+  setOpenPopupHandler(callback) {
+    this._callback.openPopup = callback;
+    this.getElement().addEventListener(`click`, this._openPopupHandler);
   }
 
   getTemplate() {
     return createFilmItemTemplate(this._film);
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }

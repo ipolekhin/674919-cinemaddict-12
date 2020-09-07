@@ -17,12 +17,12 @@ const getRandomItem = (items) => {
 };
 
 // todo
-const removeElement = (selector) => {
-  const removerElement = document.querySelector(selector);
-  if (removerElement) {
-    removerElement.remove();
-  }
-};
+// const removeElement = (selector) => {
+//   const removerElement = document.querySelector(selector);
+//   if (removerElement) {
+//     removerElement.remove();
+//   }
+// };
 
 const reshuffle = (data, maxNumber) => {
   const shuffle = data.slice().sort(() => Math.random() - 0.5);
@@ -44,7 +44,7 @@ export {
   getRandomFractionalNumbers,
   getRandomIntegerNumber,
   getRandomItem,
-  removeElement,
+  // removeElement,
   reshuffle,
   setProfileRating,
 };

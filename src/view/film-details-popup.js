@@ -1,5 +1,5 @@
+import AbstractView from "./abstract.js";
 import {createCommentsTemplate} from "./comments.js";
-import {createElement} from "../utils/render.js";
 
 const createFilmDetailsPopupTemplate = (film, comments) => {
   const {
@@ -128,26 +128,25 @@ const createFilmDetailsPopupTemplate = (film, comments) => {
   );
 };
 
-export default class FilmDetailsPopup {
+export default class FilmDetailsPopup extends AbstractView {
   constructor(film, comments) {
-    this._element = null;
+    super();
     this._film = film;
     this._comments = comments;
+    this._closePopupHandler = this._closePopupHandler.bind(this);
   }
 
   getTemplate() {
     return createFilmDetailsPopupTemplate(this._film, this._comments);
   }
 
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
+  _closePopupHandler(event) {
+    event.preventDefault();
+    this._callback.closePopup();
   }
 
-  removeElement() {
-    this._element = null;
+  setClosePopupHandler(callback) {
+    this._callback.closePopup = callback;
+    this.getElement().querySelector(`.film-details__close-btn`).addEventListener(`click`, this._closePopupHandler);
   }
 }

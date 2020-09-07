@@ -1,6 +1,6 @@
-import {createElement} from "../utils/render.js";
-import {NavigationTagsType} from "../const.js";
+import AbstractView from "./abstract.js";
 import {setProfileRating} from "../utils/common.js";
+import {NavigationTagsType} from "../const.js";
 
 const rank = (statistics) => {
   return statistics.reduce((result, {filterName, count}) => {
@@ -23,25 +23,13 @@ const createUserRatingTemplate = (statistics) => {
   );
 };
 
-export default class UserRating {
+export default class UserRating extends AbstractView {
   constructor(statistic) {
-    this._element = null;
+    super();
     this._statistic = statistic;
   }
 
   getTemplate() {
     return createUserRatingTemplate(this._statistic);
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
   }
 }
